@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1r0vr8rhwybb"]
+
+[ext_resource type="FontFile" uid="uid://draxcur5xbwak" path="res://assests/fonts/PixelOperator8.ttf" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://dp52eqwqasxxa" path="res://assests/images/MainMenu.png" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://b7u4n3vm40k8p" path="res://assests/scripts/main_menu.gd" id="1_bqqt6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fu7sn"]
+texture = ExtResource("1_7vrkn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+content_margin_left = 30.0
+content_margin_top = 4.0
+content_margin_right = 30.0
+content_margin_bottom = 3.0
+bg_color = Color(0.490196, 0.490196, 0.490196, 0)
+corner_detail = 1
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[node name="Main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fu7sn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -121.0
+offset_right = -41.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.31967, 3.03754)
+theme_override_constants/separation = 12
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 9.0
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+text = "Start
+"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 9.0
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+text = "Options
+"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 9.0
+focus_neighbor_left = NodePath("../Button2")
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

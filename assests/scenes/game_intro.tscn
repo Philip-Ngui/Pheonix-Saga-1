@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cco68rwvirsis"]
+
+[ext_resource type="Script" uid="uid://c1r2kdigfaoiq" path="res://assests/scripts/game_intro.gd" id="1_jfitr"]
+[ext_resource type="VideoStream" uid="uid://c40hhgxj6dkxr" path="res://assests/images/introVideo.ogv" id="2_i0wcq"]
+
+[sub_resource type="GDScript" id="GDScript_jfitr"]
+script/source = "extends AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	get_tree().change_scene_to_file(\"res://assests/scenes/main_menu.tscn\")
+"
+
+[node name="GameIntro" type="Node2D"]
+script = ExtResource("1_jfitr")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.929173, 0.898354)
+stream = ExtResource("2_i0wcq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+script = SubResource("GDScript_jfitr")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk5j5r8wkq2r6"]
+
+[ext_resource type="FontFile" uid="uid://draxcur5xbwak" path="res://assests/fonts/PixelOperator8.ttf" id="1_4bx60"]
+[ext_resource type="Texture2D" uid="uid://bsdol1ca1cuqq" path="res://assests/images/teamIntro1.2.png" id="1_ioskq"]
+[ext_resource type="Script" uid="uid://chyuigwxkwp0x" path="res://assests/scripts/intro.gd" id="2_yjqpq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjqpq"]
+font = ExtResource("1_4bx60")
+font_size = 20
+font_color = Color(0.670588, 0.372549, 0.0627451, 0.952941)
+outline_size = 3
+outline_color = Color(0.351986, 0.551933, 0.960392, 1)
+
+[sub_resource type="Animation" id="Animation_7a8ye"]
+resource_name = "Intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.53, 2.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0a7ni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y72e6"]
+_data = {
+&"Intro": SubResource("Animation_7a8ye"),
+&"RESET": SubResource("Animation_0a7ni")
+}
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.0
+offset_top = 171.0
+offset_right = 94.0
+offset_bottom = 199.0
+grow_horizontal = 2
+text = "A Game By"
+label_settings = SubResource("LabelSettings_yjqpq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(592, 328)
+scale = Vector2(0.419852, 0.425246)
+texture = ExtResource("1_ioskq")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Overlay")
+libraries = {
+&"": SubResource("AnimationLibrary_y72e6")
+}
+autoplay = "Intro"
+script = ExtResource("2_yjqpq")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
