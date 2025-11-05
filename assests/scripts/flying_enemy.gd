@@ -27,7 +27,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not player:
 		return
-
+#testing testing testing
 	# Move toward player
 	var direction = (player.global_position - global_position).normalized()
 	velocity = direction * move_speed
